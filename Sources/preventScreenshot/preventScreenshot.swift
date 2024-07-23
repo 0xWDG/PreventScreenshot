@@ -1,6 +1,6 @@
 //
-//  Inspect.swift
-//  Inspect
+//  PreventScreenshot.swift
+//  PreventScreenshot
 //
 //  Created by Wesley de Groot on 25/06/2024.
 //  https://wesleydegroot.nl
@@ -9,10 +9,9 @@
 //  MIT LICENCE
 //
 
-import Foundation
+#if !os(watchOS) && !os(Linux)
 import SwiftUI
 
-#if !os(watchOS)
 #if os(macOS)
 typealias PlatformView = NSView
 typealias PlatformTextField = NSSecureTextField

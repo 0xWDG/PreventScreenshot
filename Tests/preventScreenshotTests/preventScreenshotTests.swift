@@ -1,5 +1,5 @@
 import XCTest
-@testable import Inspect
+@testable import PreventScreenshot
 
 final class PreventScreenshotTests: XCTestCase {
     func testExample() throws {
