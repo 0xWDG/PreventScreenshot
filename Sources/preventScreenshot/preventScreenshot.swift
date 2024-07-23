@@ -14,30 +14,30 @@ import SwiftUI
 
 #if !os(watchOS)
 #if os(macOS)
-public typealias PlatformView = NSView
-public typealias PlatformTextField = NSSecureTextField
-public typealias PlatformRepresentable = NSViewRepresentable
-public typealias PlatformHostingController = NSHostingController
+typealias PlatformView = NSView
+typealias PlatformTextField = NSSecureTextField
+typealias PlatformRepresentable = NSViewRepresentable
+typealias PlatformHostingController = NSHostingController
 #else
-public typealias PlatformView = UIView
-public typealias PlatformTextField = UITextField
-public typealias PlatformRepresentable = UIViewRepresentable
-public typealias PlatformHostingController = UIHostingController
+typealias PlatformView = UIView
+typealias PlatformTextField = UITextField
+typealias PlatformRepresentable = UIViewRepresentable
+typealias PlatformHostingController = UIHostingController
 #endif
 
 /// Screenshot Prevent Wrapper
-public struct ScreenshotPreventWrapper<Content: View>: PlatformRepresentable {
+struct ScreenshotPreventWrapper<Content: View>: PlatformRepresentable {
     let content: () -> Content
 
-    public init(@ViewBuilder content: @escaping () -> Content) {
+    init(@ViewBuilder content: @escaping () -> Content) {
         self.content = content
     }
 
-    public func makeNSView(context: Context) -> PlatformView {
+    func makeNSView(context: Context) -> PlatformView {
         return self.makeUIView(context: context)
     }
 
-    public func makeUIView(context: Context) -> PlatformView {
+    func makeUIView(context: Context) -> PlatformView {
         let secureTextField = PlatformTextField()
 
 #if !os(macOS)
@@ -77,12 +77,12 @@ public struct ScreenshotPreventWrapper<Content: View>: PlatformRepresentable {
         return secureView
     }
 
-    public func updateNSView(_ nsView: PlatformView, context: Context) { }
-    public func updateUIView(_ uiView: PlatformView, context: Context) { }
+    func updateNSView(_ nsView: PlatformView, context: Context) { }
+    func updateUIView(_ uiView: PlatformView, context: Context) { }
 }
 
-
 extension View {
+    /// Prevent Screenshot
     @ViewBuilder public func preventScreenshot() -> some View {
         ScreenshotPreventWrapper {
             self
