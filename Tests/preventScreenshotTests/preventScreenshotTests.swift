@@ -1,7 +1,7 @@
 import XCTest
 @testable import Inspect
 
-final class preventScreenshotTests: XCTestCase {
+final class PreventScreenshotTests: XCTestCase {
     func testExample() throws {
         // XCTest Documentation
         // https://developer.apple.com/documentation/xctest

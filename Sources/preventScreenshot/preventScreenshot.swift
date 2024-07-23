@@ -5,7 +5,7 @@
 //  Created by Wesley de Groot on 25/06/2024.
 //  https://wesleydegroot.nl
 //
-//  https://github.com/0xWDG/preventScreenshot
+//  https://github.com/0xWDG/PreventScreenshot
 //  MIT LICENCE
 //
 
@@ -59,7 +59,7 @@ struct ScreenshotPreventWrapper<Content: View>: PlatformRepresentable {
 
         let hostedContent = PlatformHostingController(rootView: content())
         #if os(macOS)
-        // TODO: This seems not to work
+        // This seems not to work
         hostedContent.view.layer?.backgroundColor = .clear
         #else
         hostedContent.view.backgroundColor = .clear
