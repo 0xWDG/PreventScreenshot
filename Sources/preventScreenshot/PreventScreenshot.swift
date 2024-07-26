@@ -13,6 +13,8 @@
 import SwiftUI
 
 #if os(macOS)
+import Inspect
+
 typealias PlatformView = NSView
 typealias PlatformTextField = NSSecureTextField
 typealias PlatformRepresentable = NSViewRepresentable
@@ -41,6 +43,18 @@ struct ScreenshotPreventWrapper<Content: View>: PlatformRepresentable {
 
     // Create the UI(kit) View
     func makeUIView(context: Context) -> PlatformView {
+        // Create a hosting controller for the SwiftUI view to make it usable for *Kit
+        let hostedContent = PlatformHostingController(rootView: content())
+        #if os(macOS)
+        hostedContent.view.layer?.backgroundColor = .clear
+        hostedContent.view.window?.sharingType = .none
+        #else
+        // Make the background clear
+        hostedContent.view.backgroundColor = .clear
+        #endif
+        // To not automatically create constraints.
+        hostedContent.view.translatesAutoresizingMaskIntoConstraints = false
+
         // Create a NSSecureTextField or UITextField (AKA PlatformTextField)
         let secureTextField = PlatformTextField()
 
@@ -56,31 +70,12 @@ struct ScreenshotPreventWrapper<Content: View>: PlatformRepresentable {
 
         // Tell the system that user interaction should not be enabled
         secureTextField.isUserInteractionEnabled = false
-#else
-        // Get the secure view, on macOS the layer is optional, so we need to chain it.
-        guard let secureView = secureTextField.layer?.sublayers?.first?.delegate as? PlatformView else {
-            // Failed, return a default view
-            return PlatformView()
-        }
-#endif
 
         // Walk trough the subviews of our secure view
         secureView.subviews.forEach { subview in
             // Remove all subviews.
             subview.removeFromSuperview()
         }
-
-        // Create a hosting controller for the SwiftUI view to make it usable for *Kit
-        let hostedContent = PlatformHostingController(rootView: content())
-        #if os(macOS)
-        // This seems not to work
-        hostedContent.view.layer?.backgroundColor = .clear
-        #else
-        // Make the background clear
-        hostedContent.view.backgroundColor = .clear
-        #endif
-        // To not automatically create constraints.
-        hostedContent.view.translatesAutoresizingMaskIntoConstraints = false
 
         // Add the hosted content to the secure view (as subview)
         secureView.addSubview(hostedContent.view)
@@ -95,6 +90,9 @@ struct ScreenshotPreventWrapper<Content: View>: PlatformRepresentable {
 
         // Return the new secure view
         return secureView
+#else
+        return hostedContent.view
+#endif
     }
 
     func updateNSView(_ nsView: PlatformView, context: Context) { }
@@ -110,6 +108,11 @@ extension View {
             self
                 .redacted(reason: .privacy)
                 .privacySensitive()
+#if os(macOS)
+                .inspect(NSView.self) {
+                    $0.window?.sharingType = .none
+                }
+#endif
         }
     }
 }

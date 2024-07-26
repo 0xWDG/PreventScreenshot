@@ -1,11 +1,11 @@
-# preventScreenshot
+# PreventScreenshot
 
-preventScreenshot allows you to prevents screenshots of a SwiftUI Element.
+PreventScreenshot allows you to prevents screenshots of a SwiftUI Element.
 
-[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2F0xWDG%2FpreventScreenshot%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/0xWDG/preventScreenshot)
-[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2F0xWDG%2FpreventScreenshot%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/0xWDG/preventScreenshot)
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2F0xWDG%2FPreventScreenshot%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/0xWDG/PreventScreenshot)
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2F0xWDG%2FPreventScreenshot%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/0xWDG/PreventScreenshot)
 [![Swift Package Manager](https://img.shields.io/badge/SPM-compatible-brightgreen.svg)](https://swift.org/package-manager)
-![License](https://img.shields.io/github/license/0xWDG/preventScreenshot)
+![License](https://img.shields.io/github/license/0xWDG/PreventScreenshot)
 
 ## Requirements
 
@@ -16,11 +16,11 @@ preventScreenshot allows you to prevents screenshots of a SwiftUI Element.
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/0xWDG/preventScreenshot.git", .branch("main")),
+    .package(url: "https://github.com/0xWDG/PreventScreenshot.git", branch: "main"),
 ],
 targets: [
     .target(name: "MyTarget", dependencies: [
-        .product(name: "preventScreenshot", package: "preventScreenshot"),
+        .product(name: "PreventScreenshot", package: "PreventScreenshot"),
     ]),
 ]
 ```
@@ -28,7 +28,7 @@ targets: [
 ## Installation (Xcode)
 
 1. In Xcode, open your project and navigate to **File** → **Swift Packages** → **Add Package Dependency...**
-2. Paste the repository URL (`https://github.com/0xWDG/preventScreenshot`) and click **Next**.
+2. Paste the repository URL (`https://github.com/0xWDG/PreventScreenshot`) and click **Next**.
 3. Click **Finish**.
 
 ## Usage
@@ -37,7 +37,7 @@ Example to read a ImageView (Multi platform):
 
 ```swift
 import SwiftUI
-import preventScreenshot
+import PreventScreenshot
 
 struct ContentView: View {
     var body: some View {
