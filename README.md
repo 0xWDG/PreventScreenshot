@@ -1,6 +1,6 @@
 # PreventScreenshot
 
-PreventScreenshot allows you to prevents screenshots of a SwiftUI Element.
+This package adds a modifier to your SwiftUI elements to prevent screenshots. This is useful for apps that display sensitive information and want to prevent users from taking screenshots.
 
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2F0xWDG%2FPreventScreenshot%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/0xWDG/PreventScreenshot)
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2F0xWDG%2FPreventScreenshot%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/0xWDG/PreventScreenshot)
